@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.dao.ClueBaseInfoDaoMapper">
+  <resultMap id="BaseResultMap" type="com.test.dataOject.ClueBaseInfoDao">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="clue_id" jdbcType="INTEGER" property="clueId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="phone_no" jdbcType="VARCHAR" property="phoneNo" />
+    <result column="sex" jdbcType="TINYINT" property="sex" />
+    <result column="activity_create_time" jdbcType="TIMESTAMP" property="activityCreateTime" />
+    <result column="source_name" jdbcType="VARCHAR" property="sourceName" />
+    <result column="import_time" jdbcType="TIMESTAMP" property="importTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from clue_base_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.test.dataOject.ClueBaseInfoDao">
+    insert into clue_base_info (id, clue_id, name, 
+      phone_no, sex, activity_create_time, 
+      source_name, import_time, update_time, 
+      is_deleted)
+    values (#{id,jdbcType=INTEGER}, #{clueId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{phoneNo,jdbcType=VARCHAR}, #{sex,jdbcType=TINYINT}, #{activityCreateTime,jdbcType=TIMESTAMP}, 
+      #{sourceName,jdbcType=VARCHAR}, #{importTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{isDeleted,jdbcType=TINYINT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.test.dataOject.ClueBaseInfoDao">
+    update clue_base_info
+    set clue_id = #{clueId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      phone_no = #{phoneNo,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=TINYINT},
+      activity_create_time = #{activityCreateTime,jdbcType=TIMESTAMP},
+      source_name = #{sourceName,jdbcType=VARCHAR},
+      import_time = #{importTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, clue_id, name, phone_no, sex, activity_create_time, source_name, import_time, 
+    update_time, is_deleted
+    from clue_base_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, clue_id, name, phone_no, sex, activity_create_time, source_name, import_time, 
+    update_time, is_deleted
+    from clue_base_info
+  </select>
+</mapper>
